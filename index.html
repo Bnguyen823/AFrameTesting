@@ -1,21 +1,35 @@
 <html>
 	<head>
-	  <title>My A-Frame Scene</title>
+		<meta charset="utf-8">
+	  <title>TestScene</title>
 		<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
 	</head>
 	<body>
 		<a-scene vr-mode-ui="enabled: true">
-			<a-entity id="leftHand" hand-controls="left">
-				<a-entity laser-controls="hand: left"></a-entity>
+			<a-assets>
+				<img id="sky" src="/assets/skybox.png"></img>
+			</a-assets>
+			<a-sky src="#sky"></a-sky>
+			<a-plane position="0 0 0" rotation="-90 0 0" scale="100 100 100" color="white"></a-plane>
+			<a-entity camera look-controls wasd-controls="fly: true; acceleration: 50; easing: 20">
+				<a-cursor color="red" position="2 2 0"></a-cursor>
 			</a-entity>
-			<a-entity id="rightHand" hand-controls="right">
-				<a-entity laser-controls="hand: right"></a-entity>
-			</a-entity>
-			<a-entity camera look-controls wasd-controls="fly: true">
-				<a-cursor color="red"></a-cursor>
-			</a-entity>
-			<a-sky color="black"></a-sky>
-			<a-plane position="0 0 0" rotation="-90 0 0" scale="100 100 100"></a-plane>
+			<a-entity id="leftHand" laser-controls="hand:left" raycaster="showLine:true;origin:0.001 0 0.065;direction:0 -0.8 -1;objects:[mixin='box']" position="0 0 0"
+				daydream-controls="hand:left"
+				gearvr-controls="hand:left"
+				oculus-touch-controls="hand:left"
+				vive-controls="hand:left"
+				windows-motion-controls="hand:left"
+				tracked-controls="id:Oculus Touch (Left)"
+				 line="start:0.001 0 0.065;end:0.8126520785756675 -650.121662860534 -759.8296934682492;color:#ff0000" cursor="downEvents:triggerdown;upEvents:triggerup"></a-entity>
+		  <a-entity id="rightHand" laser-controls="hand:right" raycaster="showLine:true;origin:0.001 0 0.065;direction:0 -0.8 -1;objects:[mixin='box']" line="end:0.813 -650.122 -759.83;start:0.001 0 0.065;color:#ff0000"
+				daydream-controls="hand:right"
+				gearvr-controls="hand:right"
+				oculus-touch-controls="hand:right"
+				vive-controls="hand:right"
+				windows-motion-controls="hand:right"
+				tracked-controls="id:Oculus Touch (Right)"
+				 cursor="downEvents:triggerdown;upEvents:triggerup"></a-entity>
 		</a-scene>
 	</body>
 </html>
